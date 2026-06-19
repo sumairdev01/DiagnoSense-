@@ -44,7 +44,7 @@ init_session_state()
 
 st.set_page_config(
     page_title="MediScan AI - Healthcare Management System",
-    page_icon="🏥",
+    page_icon="+",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -342,8 +342,8 @@ def show_doctor_dashboard():
             if st.form_submit_button("Register Patient", use_container_width=True):
                 if name and cnic and phone:
                     success, msg = add_patient(st.session_state.user_id, name, cnic, gender, age, phone, address)
-                    if success: st.toast(f"✅ {msg}")
-                    else: st.error(f"❌ {msg}")
+                    if success: st.toast(f"{msg}")
+                    else: st.error(f"{msg}")
                 else: st.warning("Please fill all required fields")
 
     with tab3:
@@ -403,7 +403,7 @@ def show_doctor_dashboard():
                             success, msg = add_medical_history(p_id, st.session_state.user_id, disease, symp, treat, diag_date)
                             if success: st.success(msg)
                 
-                if st.button("🖨️ Generate Printable Prescription"):
+                if st.button("Generate Printable Prescription"):
                     printable_treat = treat.replace('\n', '<br>')
                     raw_html = f"""
                     <div style="border: 2px solid #1a73e8; padding: 30px; border-radius: 15px; background-color: #ffffff; color: #333; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 800px; margin: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">

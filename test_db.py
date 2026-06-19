@@ -14,18 +14,18 @@ def test():
     print(f"Attempting to connect to {DB_CONFIG['host']} on port {DB_CONFIG['port']}...")
     try:
         db = mysql.connector.connect(**DB_CONFIG)
-        print("✅ SUCCESS: Connected to MySQL!")
-        
+        print("[SUCCESS] Connected to MySQL!")
+
         cursor = db.cursor()
         cursor.execute("SELECT VERSION()")
         version = cursor.fetchone()
         print(f"MySQL Version: {version[0]}")
-        
+
         cursor.close()
         db.close()
         print("--- Test Completed Successfully ---")
     except Exception as e:
-        print(f"❌ FAILED: Could not connect to MySQL.")
+        print("[FAILED] Could not connect to MySQL.")
         print(f"Error details: {e}")
         print("\nPossible solutions:")
         print("1. Check if XAMPP MySQL is running.")

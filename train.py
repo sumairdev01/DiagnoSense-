@@ -5,20 +5,20 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.impute import SimpleImputer
 
-# ─────────────────────────────────────────
+# -----------------------------------------
 # CONFIG: update these paths if needed
-# ─────────────────────────────────────────
+# -----------------------------------------
 FILES = {
     "liver":    "liver.csv",
     "cardio":   "cardio.csv",
     "diabetes": "diabetes.csv",
 }
 
-# ══════════════════════════════════════════
+# ==========================================
 # 1. LIVER MODEL
-# ══════════════════════════════════════════
+# ==========================================
 try:
-    print("\n🔄 Training Liver Model...")
+    print("\n[INFO] Training Liver Model...")
 
     df = pd.read_csv(FILES["liver"], sep=None, engine="python")
 
@@ -47,17 +47,17 @@ try:
     with open("liver_model.pkl", "wb") as f:
         pickle.dump(model, f)
 
-    print("✅ Liver Model Saved! → liver_model.pkl")
+    print("[SUCCESS] Liver Model Saved -> liver_model.pkl")
 
 except Exception as e:
-    print(f"❌ Liver Model Failed: {e}")
+    print(f"[ERROR] Liver Model Failed: {e}")
 
 
-# ══════════════════════════════════════════
+# ==========================================
 # 2. CARDIO MODEL
-# ══════════════════════════════════════════
+# ==========================================
 try:
-    print("\n🔄 Training Cardio Model...")
+    print("\n[INFO] Training Cardio Model...")
 
     df = pd.read_csv(FILES["cardio"], sep=None, engine="python")
 
@@ -66,7 +66,7 @@ try:
 
     # Sample 10,000 rows for speed on large dataset
     if len(df) > 10000:
-        print(f"   Large dataset ({len(df):,} rows) — sampling 10,000 rows...")
+        print(f"   Large dataset ({len(df):,} rows) - sampling 10,000 rows...")
         df = df.sample(n=10000, random_state=42)
 
     target = "cardio"
@@ -90,17 +90,17 @@ try:
     with open("cardio_model.pkl", "wb") as f:
         pickle.dump(model, f)
 
-    print("✅ Cardio Model Saved! → cardio_model.pkl")
+    print("[SUCCESS] Cardio Model Saved -> cardio_model.pkl")
 
 except Exception as e:
-    print(f"❌ Cardio Model Failed: {e}")
+    print(f"[ERROR] Cardio Model Failed: {e}")
 
 
-# ══════════════════════════════════════════
+# ==========================================
 # 3. DIABETES MODEL
-# ══════════════════════════════════════════
+# ==========================================
 try:
-    print("\n🔄 Training Diabetes Model...")
+    print("\n[INFO] Training Diabetes Model...")
 
     df = pd.read_csv(FILES["diabetes"], sep=None, engine="python")
 
@@ -125,10 +125,10 @@ try:
     with open("diabetes_model.pkl", "wb") as f:
         pickle.dump(model, f)
 
-    print("✅ Diabetes Model Saved! → diabetes_model.pkl")
+    print("[SUCCESS] Diabetes Model Saved -> diabetes_model.pkl")
 
 except Exception as e:
-    print(f"❌ Diabetes Model Failed: {e}")
+    print(f"[ERROR] Diabetes Model Failed: {e}")
 
 
-print("\n🎉 All done! Models are saved as .pkl files in the current directory.")
+print("\n[DONE] All models trained and saved as .pkl files in the current directory.")
