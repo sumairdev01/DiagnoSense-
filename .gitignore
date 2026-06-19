@@ -25,3 +25,6 @@ scratch/
 # Archives/Zip files
 *.zip
 
+# Test/Debug files
+test_db.py
+
